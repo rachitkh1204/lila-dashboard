@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LILA BLACK Telemetry Tool</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="left-sidebar">
+      <h2>LILA BLACK</h2>
+      <p class="muted">Player Journey Visualization Tool</p>
+
+      <div class="mode-list">
+        <button class="mode-btn active" data-mode="flow">Flow</button>
+        <button class="mode-btn" data-mode="combat">Combat</button>
+        <button class="mode-btn" data-mode="kill-types">Kill Types</button>
+        <button class="mode-btn" data-mode="path">Path Tracer</button>
+        <button class="mode-btn" data-mode="loot">Loot Zones</button>
+        <button class="mode-btn" data-mode="timeline">Timeline / Playback</button>
+        <button class="mode-btn" data-mode="players">Match Players</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <div class="map-selection-block">
+            <div class="label">MAP SELECTION</div>
+            <div id="mapTabs" class="map-tabs"></div>
+          </div>
+
+          <div class="filter-row">
+            <div class="filter-chip">
+              <label>Date</label>
+              <select id="dateSelect">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div class="filter-chip">
+              <label>Match</label>
+              <select id="matchSelect">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div class="filter-chip" id="playerTypeWrap">
+              <label>Player Type</label>
+              <select id="playerTypeSelect">
+                <option value="all">All</option>
+                <option value="human">Human</option>
+                <option value="bot">Bot</option>
+              </select>
+            </div>
+
+            <div id="pathUserWrap" class="filter-chip hidden">
+              <label>Player ID</label>
+              <select id="userSelect">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div id="combatTypeWrap" class="filter-chip hidden">
+              <label>Combat Type</label>
+              <select id="combatTypeSelect">
+                <option value="all">All</option>
+                <option value="Kill">Kill</option>
+                <option value="Killed">Killed</option>
+                <option value="BotKill">BotKill</option>
+                <option value="BotKilled">BotKilled</option>
+              </select>
+            </div>
+
+            <div id="killTypeWrap" class="filter-chip hidden">
+              <label>Kill Category</label>
+              <select id="killTypeSelect">
+                <option value="all">All</option>
+                <option value="human_vs_human">human_vs_human</option>
+                <option value="human_kills_bot">human_kills_bot</option>
+                <option value="bot_kills_human">bot_kills_human</option>
+                <option value="storm">storm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="mapStage" class="map-stage">
+        <img id="minimap" src="" alt="Minimap" />
+        <svg id="overlay" viewBox="0 0 1024 1024" preserveAspectRatio="none"></svg>
+      </div>
+
+      <div id="timelineControls" class="timeline-controls hidden">
+        <button id="playBtn">Play</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="restartBtn">Restart</button>
+        <input id="timelineSlider" type="range" min="0" max="0" value="0" step="100" />
+        <span id="timelineLabel">0.0s</span>
+      </div>
+
+      <div id="playersPanel" class="players-panel hidden">
+        <div class="players-header">
+          <h3>Players in Match</h3>
+          <div id="playersCount" class="players-count">0 players</div>
+        </div>
+        <div id="playersList" class="players-list"></div>
+      </div>
+    </main>
+
+    <aside class="right-sidebar">
+      <h3>Insights</h3>
+      <div id="insights">Load a view to see gameplay insights.</div>
+
+      <h3>Legend</h3>
+      <div id="legend" class="legend"></div>
+    </aside>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
